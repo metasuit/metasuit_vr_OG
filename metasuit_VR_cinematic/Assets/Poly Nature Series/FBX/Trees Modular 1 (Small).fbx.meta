@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 4dd1a691cf706bc47b74872db9503b56
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Leafy Bunch 1 (Small)
+    100002: Leafy Bunch 2 (Small)
+    100004: Leafy Bunch 3 (Small)
+    100006: Leafy Bunch 4 (Small)
+    100008: Leafy Bunch 5 (Small)
+    100010: Leafy Bunch 6 (Small)
+    100012: Tree Base 1 (Small)
+    100014: Tree Base 2 (Small)
+    100016: Tree Branch 1 (Small)
+    100018: Tree Branch 2 (Small)
+    100020: Tree Branch 3 (Small)
+    100022: Tree Branch 4 (Small)
+    100024: Tree Branch 5 (Small)
+    100026: Tree Branch 6 (Small)
+    100028: Tree Branch 7 (Small)
+    100030: //RootNode
+    400000: Leafy Bunch 1 (Small)
+    400002: Leafy Bunch 2 (Small)
+    400004: Leafy Bunch 3 (Small)
+    400006: Leafy Bunch 4 (Small)
+    400008: Leafy Bunch 5 (Small)
+    400010: Leafy Bunch 6 (Small)
+    400012: Tree Base 1 (Small)
+    400014: Tree Base 2 (Small)
+    400016: Tree Branch 1 (Small)
+    400018: Tree Branch 2 (Small)
+    400020: Tree Branch 3 (Small)
+    400022: Tree Branch 4 (Small)
+    400024: Tree Branch 5 (Small)
+    400026: Tree Branch 6 (Small)
+    400028: Tree Branch 7 (Small)
+    400030: //RootNode
+    2100000: tree bark
+    2100002: Tree Leaves
+    2300000: Leafy Bunch 1 (Small)
+    2300002: Leafy Bunch 2 (Small)
+    2300004: Leafy Bunch 3 (Small)
+    2300006: Leafy Bunch 4 (Small)
+    2300008: Leafy Bunch 5 (Small)
+    2300010: Leafy Bunch 6 (Small)
+    2300012: Tree Base 1 (Small)
+    2300014: Tree Base 2 (Small)
+    2300016: Tree Branch 1 (Small)
+    2300018: Tree Branch 2 (Small)
+    2300020: Tree Branch 3 (Small)
+    2300022: Tree Branch 4 (Small)
+    2300024: Tree Branch 5 (Small)
+    2300026: Tree Branch 6 (Small)
+    2300028: Tree Branch 7 (Small)
+    3300000: Leafy Bunch 1 (Small)
+    3300002: Leafy Bunch 2 (Small)
+    3300004: Leafy Bunch 3 (Small)
+    3300006: Leafy Bunch 4 (Small)
+    3300008: Leafy Bunch 5 (Small)
+    3300010: Leafy Bunch 6 (Small)
+    3300012: Tree Base 1 (Small)
+    3300014: Tree Base 2 (Small)
+    3300016: Tree Branch 1 (Small)
+    3300018: Tree Branch 2 (Small)
+    3300020: Tree Branch 3 (Small)
+    3300022: Tree Branch 4 (Small)
+    3300024: Tree Branch 5 (Small)
+    3300026: Tree Branch 6 (Small)
+    3300028: Tree Branch 7 (Small)
+    4300000: Tree Branch 5 (Small)
+    4300002: Tree Base 1 (Small)
+    4300004: Tree Branch 2 (Small)
+    4300006: Tree Branch 1 (Small)
+    4300008: Tree Branch 6 (Small)
+    4300010: Tree Branch 4 (Small)
+    4300012: Tree Branch 3 (Small)
+    4300014: Tree Branch 7 (Small)
+    4300016: Leafy Bunch 6 (Small)
+    4300018: Leafy Bunch 4 (Small)
+    4300020: Leafy Bunch 1 (Small)
+    4300022: Leafy Bunch 3 (Small)
+    4300024: Leafy Bunch 2 (Small)
+    4300026: Leafy Bunch 5 (Small)
+    4300028: Tree Base 2 (Small)
+    6400000: Leafy Bunch 1 (Small)
+    6400002: Leafy Bunch 2 (Small)
+    6400004: Leafy Bunch 3 (Small)
+    6400006: Leafy Bunch 4 (Small)
+    6400008: Leafy Bunch 5 (Small)
+    6400010: Leafy Bunch 6 (Small)
+    6400012: Tree Base 1 (Small)
+    6400014: Tree Base 2 (Small)
+    6400016: Tree Branch 1 (Small)
+    6400018: Tree Branch 2 (Small)
+    6400020: Tree Branch 3 (Small)
+    6400022: Tree Branch 4 (Small)
+    6400024: Tree Branch 5 (Small)
+    6400026: Tree Branch 6 (Small)
+    6400028: Tree Branch 7 (Small)
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree Leaves
+    second: {fileID: 2100000, guid: 8aca42c9354584649a8d7297dcec9248, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree bark
+    second: {fileID: 2100000, guid: 823cd825ed114bd44a5ed02352f9b19d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
