@@ -27,6 +27,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     public int RotationDirectionX = 0;
     public int RotationDirectionY = 1;
     public int RotationDirectionZ = 0;
+    public int AngleOffset = 0;
     public int numberOfPeakValuesForCalibration = 10;
     public bool selfsensingTesting;
     public float calibrationTime = 2;
@@ -345,7 +346,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     {
         if (calibrated == false && bodyPartToggle.isOn)
         {
-            Vector3 to = new Vector3(value * RotationDirectionX, value * RotationDirectionY, value * RotationDirectionZ);
+            Vector3 to = new Vector3((value + AngleOffset) * RotationDirectionX, (value + AngleOffset) * RotationDirectionY, (value + AngleOffset) * RotationDirectionZ);
 
             transform.localEulerAngles = to;
         }
@@ -388,7 +389,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             }
             vectorRotation /= numberOfHasels;
             //Debug.Log(vectorRotation.ToString());
-            Vector3 to = new Vector3(vectorRotation * RotationDirectionX, vectorRotation * RotationDirectionY, vectorRotation * RotationDirectionZ);
+            Vector3 to = new Vector3((vectorRotation + AngleOffset) * RotationDirectionX , (vectorRotation + AngleOffset) * RotationDirectionY, (vectorRotation + AngleOffset) * RotationDirectionZ);
 
             transform.localEulerAngles = to;
             

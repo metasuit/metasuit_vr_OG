@@ -14587,6 +14587,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400090, guid: d06ae287e35dab54bb47f5d5ee2780ce, type: 3}
   m_PrefabInstance: {fileID: 183611301}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &414830552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100096, guid: d06ae287e35dab54bb47f5d5ee2780ce, type: 3}
+  m_PrefabInstance: {fileID: 183611301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &415262494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1888561627677859119, guid: 7ed58c5843c90584b9a5d7c12c3f8664, type: 3}
@@ -28585,6 +28590,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 1
   RotationDirectionZ: 0
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -31785,6 +31791,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7001449132701727488, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   m_PrefabInstance: {fileID: 1063952962}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &911421650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100212, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+  m_PrefabInstance: {fileID: 677279154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &911421652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911421650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationDirectionX: 0
+  RotationDirectionY: -1
+  RotationDirectionZ: 0
+  AngleOffset: 180
+  numberOfPeakValuesForCalibration: 10
+  selfsensingTesting: 0
+  calibrationTime: 2
+  calibrationTimeMove: 4
+  numberOfHasels: 1
+  firstHaselIndex: 2
+  calibrateButton1: {fileID: 335764051}
+  calibrateButton2: {fileID: 1099898084}
+  calibrateButton3: {fileID: 417214030}
+  calibrationSlider1: {fileID: 1061061466}
+  calibrationSlider2: {fileID: 1905201786}
+  startCalibrationButton: {fileID: 566777718}
+  startApplicationButton: {fileID: 985013494}
+  dataProcessor: {fileID: 976083927}
+  bodyPartToggle: {fileID: 1536416264}
 --- !u!1001 &911622844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34473,6 +34515,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: -1
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -38159,7 +38202,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1691807805}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -38171,7 +38214,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818901080}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -38183,7 +38226,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1370652184}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 911421652}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1767666812}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1290733141}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1386401482}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -38579,6 +38670,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 1
   RotationDirectionZ: 0
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -48411,7 +48503,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationDirectionX: 0
   RotationDirectionY: 0
-  RotationDirectionZ: 1
+  RotationDirectionZ: -1
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -51754,6 +51847,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400096, guid: d06ae287e35dab54bb47f5d5ee2780ce, type: 3}
   m_PrefabInstance: {fileID: 183611301}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370652184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414830552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationDirectionX: 0
+  RotationDirectionY: 0
+  RotationDirectionZ: 1
+  AngleOffset: 0
+  numberOfPeakValuesForCalibration: 10
+  selfsensingTesting: 0
+  calibrationTime: 2
+  calibrationTimeMove: 4
+  numberOfHasels: 1
+  firstHaselIndex: 7
+  calibrateButton1: {fileID: 335764051}
+  calibrateButton2: {fileID: 1099898084}
+  calibrateButton3: {fileID: 417214030}
+  calibrationSlider1: {fileID: 1061061466}
+  calibrationSlider2: {fileID: 1905201786}
+  startCalibrationButton: {fileID: 566777718}
+  startApplicationButton: {fileID: 985013494}
+  dataProcessor: {fileID: 976083927}
+  bodyPartToggle: {fileID: 1300839492}
 --- !u!4 &1371399506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6210706871770908152, guid: 5d5767d728634e940951149363a0cc17, type: 3}
@@ -52211,7 +52335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationDirectionX: 0
   RotationDirectionY: 0
-  RotationDirectionZ: 1
+  RotationDirectionZ: -1
+  AngleOffset: 180
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -61082,6 +61207,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 1
   RotationDirectionZ: 0
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -65502,6 +65628,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6924445473206274576, guid: 540ca63a2920d2d4c959ab6c4c605a31, type: 3}
   m_PrefabInstance: {fileID: 2015398174}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1691807804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: d06ae287e35dab54bb47f5d5ee2780ce, type: 3}
+  m_PrefabInstance: {fileID: 183611301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1691807805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691807804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationDirectionX: 0
+  RotationDirectionY: 0
+  RotationDirectionZ: 1
+  AngleOffset: 0
+  numberOfPeakValuesForCalibration: 10
+  selfsensingTesting: 0
+  calibrationTime: 2
+  calibrationTimeMove: 4
+  numberOfHasels: 1
+  firstHaselIndex: 1
+  calibrateButton1: {fileID: 335764051}
+  calibrateButton2: {fileID: 1099898084}
+  calibrateButton3: {fileID: 417214030}
+  calibrationSlider1: {fileID: 1061061466}
+  calibrationSlider2: {fileID: 1905201786}
+  startCalibrationButton: {fileID: 566777718}
+  startApplicationButton: {fileID: 985013494}
+  dataProcessor: {fileID: 976083927}
+  bodyPartToggle: {fileID: 1305461610}
 --- !u!1001 &1695935259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68162,6 +68324,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5767d728634e940951149363a0cc17, type: 3}
+--- !u!1 &1767666810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100214, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+  m_PrefabInstance: {fileID: 677279154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1767666812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767666810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationDirectionX: 0
+  RotationDirectionY: -1
+  RotationDirectionZ: 0
+  AngleOffset: 180
+  numberOfPeakValuesForCalibration: 10
+  selfsensingTesting: 0
+  calibrationTime: 2
+  calibrationTimeMove: 4
+  numberOfHasels: 1
+  firstHaselIndex: 5
+  calibrateButton1: {fileID: 335764051}
+  calibrateButton2: {fileID: 1099898084}
+  calibrateButton3: {fileID: 417214030}
+  calibrationSlider1: {fileID: 1061061466}
+  calibrationSlider2: {fileID: 1905201786}
+  startCalibrationButton: {fileID: 566777718}
+  startApplicationButton: {fileID: 985013494}
+  dataProcessor: {fileID: 976083927}
+  bodyPartToggle: {fileID: 863063306}
 --- !u!4 &1767893075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3119767064477121962, guid: ad379418de8c8ae468e5d4f380c385ba, type: 3}
@@ -69740,6 +69938,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85984237f16b45e498168f061883fd81, type: 3}
+--- !u!1 &1818901079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: d06ae287e35dab54bb47f5d5ee2780ce, type: 3}
+  m_PrefabInstance: {fileID: 183611301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818901080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818901079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationDirectionX: 0
+  RotationDirectionY: 0
+  RotationDirectionZ: 1
+  AngleOffset: 0
+  numberOfPeakValuesForCalibration: 10
+  selfsensingTesting: 0
+  calibrationTime: 2
+  calibrationTimeMove: 4
+  numberOfHasels: 1
+  firstHaselIndex: 4
+  calibrateButton1: {fileID: 335764051}
+  calibrateButton2: {fileID: 1099898084}
+  calibrateButton3: {fileID: 417214030}
+  calibrationSlider1: {fileID: 1061061466}
+  calibrationSlider2: {fileID: 1905201786}
+  startCalibrationButton: {fileID: 566777718}
+  startApplicationButton: {fileID: 985013494}
+  dataProcessor: {fileID: 976083927}
+  bodyPartToggle: {fileID: 2060216549}
 --- !u!1001 &1818957611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71242,6 +71476,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: 1
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
@@ -72838,7 +73073,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1691807805}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -72850,7 +73085,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818901080}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -72862,7 +73097,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1370652184}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 911421652}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1767666812}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1290733141}
+        m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
+        m_MethodName: RotationUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1386401482}
         m_TargetAssemblyTypeName: RotateAroundLocalYAxis, Assembly-CSharp
         m_MethodName: RotationUpdate
         m_Mode: 0
@@ -80773,6 +81056,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: -1
+  AngleOffset: 0
   numberOfPeakValuesForCalibration: 10
   selfsensingTesting: 0
   calibrationTime: 2
