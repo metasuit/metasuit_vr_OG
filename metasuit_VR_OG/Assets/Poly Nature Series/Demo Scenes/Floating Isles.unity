@@ -4116,23 +4116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1328080588}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 0
   moveSpeed: 3
   reach: 0.25
-  ArmReach: 10
   rotationSpeed: 1
   pathName: 
 --- !u!1001 &132766820
@@ -8774,23 +8760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 438801221}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 2
   moveSpeed: 1.2
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!4 &239795765
@@ -12887,23 +12859,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1328080588}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 0
   moveSpeed: 2.5
   reach: 0.25
-  ArmReach: 10
   rotationSpeed: 1
   pathName: 
 --- !u!4 &348086457 stripped
@@ -13801,23 +13759,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 235873412}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 0
   moveSpeed: 1
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!4 &373342749
@@ -42118,23 +42062,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 438801221}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 6
   moveSpeed: 0.8
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!4 &1109675044
@@ -58615,7 +58545,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3784069440365777695, guid: 05360d091e6312f4fa47381916da1f78, type: 3}
   m_PrefabInstance: {fileID: 1592904558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1484900407
+--- !u!114 &1484900411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58624,7 +58554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1484900402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404d66d6b6c22aa4197604208a8dd7c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d79d80f6077ed49bdd01398a8b869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 218698076}
@@ -58634,7 +58564,7 @@ MonoBehaviour:
       m_Name: Show Button
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 679b0de9-07ff-4020-8b6c-c76679c00256
+      m_Id: f9cd8f32-192a-4ed7-9ce7-6302951d61f6
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -58645,8 +58575,10 @@ MonoBehaviour:
   moveSpeed: 5
   reach: 0.25
   ArmReach: 10
-  rotationSpeed: 1
+  rotationSpeed: 2.5
   pathName: 
+  clippingThresholdAngle: 5
+  rotationSpeedAngle: 60
 --- !u!4 &1485371078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7727289973381174956, guid: 69af614c081cac149a0b9d6685bffbc7, type: 3}
@@ -64973,23 +64905,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1328080588}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 0
   moveSpeed: 1.5
   reach: 0.25
-  ArmReach: 10
   rotationSpeed: 1
   pathName: 
 --- !u!1 &1628740669 stripped
@@ -68285,23 +68203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 235873412}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 6
   moveSpeed: 0.8
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!4 &1688354893 stripped
@@ -81271,23 +81175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 235873412}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 2
   moveSpeed: 1.2
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!1001 &2029978911
@@ -82108,23 +81998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 235873412}
-  showButton:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  armPosition: {fileID: 0}
   currentWayPointID: 9
   moveSpeed: 1.1
   reach: 1
-  ArmReach: 10
   rotationSpeed: 0.75
   pathName: 
 --- !u!4 &2048343916
