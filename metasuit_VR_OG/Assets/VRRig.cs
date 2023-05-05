@@ -11,10 +11,18 @@ public class VRMap
     public Transform rigTarget;
     public Vector3 trackingPositionOffset;
     public Vector3 trackingRotationOffset;
+    public Vector3 Offset;
+ 
 
     public void Map()
     {
         rigTarget.position = vrTarget.TransformPoint(trackingPositionOffset);
+        rigTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
+    }
+
+    public void HeadMap()
+    {
+        rigTarget.position = vrTarget.TransformPoint(trackingPositionOffset) + Offset;
         rigTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 }
@@ -39,7 +47,7 @@ public class VRRig : MonoBehaviour
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(-headConstraint.up, Vector3.up).normalized, Time.deltaTime * turnSmooth);
 
-        head.Map();
+        head.HeadMap();
         leftHand.Map();
         rightHand.Map();
     }

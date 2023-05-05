@@ -641,18 +641,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Menu",
+                    "name": "thumbstick",
                     "type": "Button",
-                    "id": "1e426c45-57a9-4fb8-827d-af26cab9b58a",
+                    "id": "2e1fe6fe-e5a6-4808-9a9a-005685d673c0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "thumbstick",
+                    "name": "menu",
                     "type": "Button",
-                    "id": "2e1fe6fe-e5a6-4808-9a9a-005685d673c0",
+                    "id": "4d1dd5c0-7db4-4da5-8c24-8dce5fa3e51b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -794,23 +794,23 @@
                 },
                 {
                     "name": "",
-                    "id": "2a8a7ce8-1b28-4f0f-a437-e621ef4619c2",
-                    "path": "<XRSimulatedController>{LeftHand}/menuButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4a914cb3-3a63-458c-ac5d-102a96905d6f",
                     "path": "<OculusTouchController>/thumbstickClicked",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "thumbstick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efddea2a-a888-4989-bcbc-304689a09ce8",
+                    "path": "<OculusTouchController>/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1393,6 +1393,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "button A",
+                    "type": "Button",
+                    "id": "5cc8cbe3-ba03-42d9-94e0-e3538ecb9842",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1547,6 +1556,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "202f35b0-5dd8-4a0c-9fff-f5ebfee8ffbc",
+                    "path": "<OculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "button A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
