@@ -12,19 +12,18 @@ namespace AquariusMax.PolyNature
     {
 
         public WaypointPath pathToFollow;
-        public InputActionProperty showButton;
+       // public InputActionProperty showButton;
         public Transform armPosition;
         public int currentWayPointID = 0;
-        public float moveSpeed;
-        public float reach = 1.0f;
+        public float moveSpeed = 5f;
+        public float reach = 0.25f;
         public float ArmReach = 10.0f;
-        public float rotationSpeed = 0.5f;
+        public float rotationSpeed = 1.5f;
         public string pathName;
         public float clippingThresholdAngle = 3f;
-        public float rotationSpeedAngle = 30f;
 
         private Vector3 lastPosition;
-        private bool Flying = true;
+        public bool Flying = true;
         private float distance;
         private Animator anim;
 
@@ -40,14 +39,13 @@ namespace AquariusMax.PolyNature
         // Update is called once per frame
         void Update()
         {
-
+            /*
             if (showButton.action.WasPressedThisFrame())
             {
                 if (Flying)
                 {
                     //saves position of node and sets position of node to position of arm
                     lastPosition = pathToFollow.pathPoints[currentWayPointID].position;
-                    Debug.Log(pathToFollow.pathPoints[currentWayPointID].position);
                     pathToFollow.pathPoints[currentWayPointID].position = armPosition.position;
                     Flying = false;
                 }
@@ -66,7 +64,7 @@ namespace AquariusMax.PolyNature
 
             }
 
-
+*/
             
            
           
