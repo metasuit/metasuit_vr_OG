@@ -14,6 +14,7 @@ namespace AquariusMax.PolyNature
         public WaypointPath pathToFollow;
        // public InputActionProperty showButton;
         public Transform armPosition;
+        public Vector3 offset;
         public int currentWayPointID = 0;
         public float moveSpeed = 5f;
         public float reach = 0.25f;
@@ -21,11 +22,18 @@ namespace AquariusMax.PolyNature
         public float rotationSpeed = 1.5f;
         public string pathName;
         public float clippingThresholdAngle = 3f;
+        public float speedNearPlayer = 0.8f;
+        public float ArmReachAnim = 10f;
 
         private Vector3 lastPosition;
         public bool Flying = true;
+        public bool Clipped = false;
+        public bool reached = false;
         private float distance;
         private Animator anim;
+        private float origSpeedNearPlayer;
+        
+
 
         // Use this for initialization
         void Start()
@@ -34,6 +42,8 @@ namespace AquariusMax.PolyNature
             //lastPosition = transform.position;
             anim = gameObject.GetComponentInChildren<Animator>();
             float distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
+
+            origSpeedNearPlayer = speedNearPlayer;
         }
 
         // Update is called once per frame
@@ -81,32 +91,42 @@ namespace AquariusMax.PolyNature
 
 
                 // Start idle animation if within reach
+                if (distance <= ArmReachAnim && !reached)
+                {
+                    //anim.SetInteger("AnimationPar", 2);
+                    anim.CrossFadeInFixedTime("touch_down", 0.5f);
+                    reached = true;
+                }
                 if (distance <= reach)
                 {
                     
                     anim.SetInteger("AnimationPar", 3);
                     var armRotation = Quaternion.LookRotation(armPosition.forward);
                     var angle = Vector3.Angle(transform.forward, armPosition.forward);
-                    if(angle > clippingThresholdAngle)
+                    if (angle > clippingThresholdAngle && Clipped == false)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed);
                     }
                     else
                     {
+                        Clipped = true;
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed * 25);
                     }
 
                     // clip position to arm
-                    transform.position = armPosition.position;
+                    transform.position = armPosition.position + offset;
                     //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 }
+
                 // Start landing animation if within ArmReach and take direct line
+
                 else if (distance <= ArmReach)
                 {
-                    anim.SetInteger("AnimationPar", 2);
-                    transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed);
+                    
+                    transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
+                    speedNearPlayer -= 0.005f;
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-                }
+                } 
                 else
                 {
                     //default rotation and speed outside of armReach
@@ -119,6 +139,7 @@ namespace AquariusMax.PolyNature
             }
             else
             {
+                speedNearPlayer = origSpeedNearPlayer;
                 distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
                 var rotation = Quaternion.LookRotation(pathToFollow.pathPoints[currentWayPointID].position - transform.position);
 

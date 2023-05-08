@@ -12,13 +12,18 @@ public class CallBird : MonoBehaviour
     public Transform armPosition;
     public WaypointPath[] wayPointpaths;
     public GameObject[] birds;
+    public GameObject bird;
     public PathMovementBirds[] childScripts;
     
 
     private Vector3 lastPosition;
-    private int index_bird = 0;
+    public int index_bird = 0;
     private Animator anim;
     public bool call_bird = true;
+    public bool Debugging = true;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +37,7 @@ public class CallBird : MonoBehaviour
     void Update()
     {
         WaypointPath pathToFollow = wayPointpaths[index_bird];
-        GameObject bird = birds[index_bird];
+        bird = birds[index_bird];
         PathMovementBirds childScript = childScripts[index_bird];
         int currentWayPointID = childScript.currentWayPointID;
         anim = bird.GetComponentInChildren<Animator>();
@@ -54,10 +59,19 @@ public class CallBird : MonoBehaviour
                 pathToFollow.pathPoints[currentWayPointID].position = lastPosition;
                 call_bird = true;
                 childScript.Flying = true;
+                childScript.Clipped = false;
+                childScript.reached = false;
                 anim.CrossFadeInFixedTime("take_off", 0.3f);
                 //anim.CrossFadeInFixedTime("Run", 0.1f);
                 anim.SetInteger("AnimationPar", 5);
-                index_bird++;
+
+                //Debugging fix one bird -> comment index++
+                if (!Debugging)
+                {
+                    index_bird++;
+                }
+                
+
                 if(index_bird == birds.Length)
                 {
                     index_bird = 0;
