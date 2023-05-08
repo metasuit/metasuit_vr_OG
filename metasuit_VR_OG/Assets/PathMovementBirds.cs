@@ -14,6 +14,7 @@ namespace AquariusMax.PolyNature
         public WaypointPath pathToFollow;
        // public InputActionProperty showButton;
         public Transform armPosition;
+        public Transform elbowPosition;
         public Vector3 offset;
         public int currentWayPointID = 0;
         public float moveSpeed = 5f;
@@ -24,15 +25,20 @@ namespace AquariusMax.PolyNature
         public float clippingThresholdAngle = 3f;
         public float speedNearPlayer = 0.8f;
         public float ArmReachAnim = 10f;
+        public float landingClipReach = 0.05f;
+        public float deacceleration = 0.995f;
 
         private Vector3 lastPosition;
         public bool Flying = true;
         public bool Clipped = false;
         public bool reached = false;
+        public bool LandingClipped = false;
         private float distance;
         private Animator anim;
         private float origSpeedNearPlayer;
-        
+        public float moveTowardsElbow = 0.3f;
+        public Vector3 positionOffset;
+
 
 
         // Use this for initialization
@@ -81,11 +87,19 @@ namespace AquariusMax.PolyNature
             // code for bird when stationary
             if (!Flying)
             {
-                
+
                 //handle landing
+                positionOffset = Vector3.Lerp(armPosition.position, elbowPosition.position, moveTowardsElbow);
 
                 // set position of node to arm
-                pathToFollow.pathPoints[currentWayPointID].position = armPosition.position;
+               // positionOffset = armPosition.InverseTransformPoint(elbowPosition.position);
+                Debug.Log("sdf,jkhskfh" + positionOffset);
+
+                pathToFollow.pathPoints[currentWayPointID].position = positionOffset + offset;
+                Debug.Log("ArmPosition: " + armPosition.position);
+                Debug.Log("Offset: " + offset);
+                Debug.Log("positionOffset" + positionOffset);
+                Debug.Log("joint:" + pathToFollow.pathPoints[currentWayPointID].position);
                 distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
                 var rotation = Quaternion.LookRotation(pathToFollow.pathPoints[currentWayPointID].position - transform.position);
 
@@ -114,7 +128,15 @@ namespace AquariusMax.PolyNature
                     }
 
                     // clip position to arm
-                    transform.position = armPosition.position + offset;
+                    if(distance <= landingClipReach)
+                    {
+                            transform.position = positionOffset + offset;
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
+                    }
+
                     //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 }
 
@@ -124,7 +146,7 @@ namespace AquariusMax.PolyNature
                 {
                     
                     transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
-                    speedNearPlayer -= 0.005f;
+                    if (speedNearPlayer > 0.1f) { speedNearPlayer *= deacceleration; }
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 } 
                 else

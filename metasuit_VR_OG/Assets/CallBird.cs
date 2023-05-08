@@ -10,17 +10,18 @@ public class CallBird : MonoBehaviour
 
     public InputActionProperty showButton;
     public Transform armPosition;
+    public Transform elbowPosition;
     public WaypointPath[] wayPointpaths;
     public GameObject[] birds;
     public GameObject bird;
     public PathMovementBirds[] childScripts;
-    
+    public float moveTowardsElbow = 1f;
 
     private Vector3 lastPosition;
     public int index_bird = 0;
     private Animator anim;
     public bool call_bird = true;
-    public bool Debugging = true;
+    public bool Debugging = false;
 
 
 
@@ -46,9 +47,10 @@ public class CallBird : MonoBehaviour
         {
             if (call_bird)
             {
+
                 //saves position of node and sets position of node to position of arm
                 lastPosition = pathToFollow.pathPoints[currentWayPointID].position;
-                pathToFollow.pathPoints[currentWayPointID].position = armPosition.position;
+                pathToFollow.pathPoints[currentWayPointID].position = armPosition.position + childScript.positionOffset*childScript.moveTowardsElbow + childScript.offset;
                 call_bird = false;
                 childScript.Flying = false;
             }

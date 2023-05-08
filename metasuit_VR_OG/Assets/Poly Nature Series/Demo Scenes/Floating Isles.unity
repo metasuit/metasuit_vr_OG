@@ -13849,6 +13849,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 4785001939898164919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   armPosition: {fileID: 396115075}
+  elbowPosition: {fileID: 1073703545}
   wayPointpaths:
   - {fileID: 218698076}
   - {fileID: 1413693865}
@@ -13865,9 +13866,10 @@ MonoBehaviour:
   - {fileID: 887532387}
   - {fileID: 773382204}
   - {fileID: 1425965178}
-  index_bird: 1
+  moveTowardsElbow: 100
+  index_bird: 3
   call_bird: 1
-  Debugging: 1
+  Debugging: 0
 --- !u!4 &358472939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5913434512563367662, guid: 29f9b4b858ae2b74c85c9dd40ca713c9, type: 3}
@@ -29644,6 +29646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1182453943}
   armPosition: {fileID: 396115075}
+  elbowPosition: {fileID: 1073703545}
   offset: {x: 0, y: -0.02, z: 0}
   currentWayPointID: 0
   moveSpeed: 5
@@ -29653,10 +29656,15 @@ MonoBehaviour:
   pathName: 
   clippingThresholdAngle: 3
   speedNearPlayer: 0.8
-  ArmReachAnim: 10
+  ArmReachAnim: 4.7
+  landingClipReach: 0.05
+  deacceleration: 0.995
   Flying: 1
   Clipped: 0
   reached: 0
+  LandingClipped: 0
+  moveTowardsElbow: 1
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &773388546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34024,6 +34032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1413693865}
   armPosition: {fileID: 396115075}
+  elbowPosition: {fileID: 1073703545}
   offset: {x: 0, y: 0.12, z: 0}
   currentWayPointID: 0
   moveSpeed: 5
@@ -34033,10 +34042,15 @@ MonoBehaviour:
   pathName: 
   clippingThresholdAngle: 3
   speedNearPlayer: 0.8
-  ArmReachAnim: 3
+  ArmReachAnim: 1.5
+  landingClipReach: 0.05
+  deacceleration: 0.993
   Flying: 1
   Clipped: 0
   reached: 0
+  LandingClipped: 0
+  moveTowardsElbow: 0.35
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &887762170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58770,6 +58784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 1516955081}
   armPosition: {fileID: 396115075}
+  elbowPosition: {fileID: 1073703545}
   offset: {x: 0, y: 0.11, z: -0.03}
   currentWayPointID: 0
   moveSpeed: 5
@@ -58779,10 +58794,15 @@ MonoBehaviour:
   pathName: 
   clippingThresholdAngle: 3
   speedNearPlayer: 0.8
-  ArmReachAnim: 10
+  ArmReachAnim: 2
+  landingClipReach: 0.05
+  deacceleration: 0.99
   Flying: 1
   Clipped: 0
   reached: 0
+  LandingClipped: 0
+  moveTowardsElbow: 0.5
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &1426187919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61255,6 +61275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 218698076}
   armPosition: {fileID: 396115075}
+  elbowPosition: {fileID: 1073703545}
   offset: {x: 0, y: -0.06, z: 0}
   currentWayPointID: 0
   moveSpeed: 5
@@ -61264,10 +61285,15 @@ MonoBehaviour:
   pathName: 
   clippingThresholdAngle: 3
   speedNearPlayer: 0.8
-  ArmReachAnim: 10
+  ArmReachAnim: 4.2
+  landingClipReach: 0.05
+  deacceleration: 0.997
   Flying: 1
   Clipped: 0
   reached: 0
+  LandingClipped: 0
+  moveTowardsElbow: 0.25
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &1485371078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7727289973381174956, guid: 69af614c081cac149a0b9d6685bffbc7, type: 3}
