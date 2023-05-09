@@ -78,8 +78,9 @@ public class CallBird : MonoBehaviour
         pathToFollow.pathPoints[currentWayPointID].position = lastPosition;
         call_bird = true;
         childScript.Flying = true;
-        childScript.Clipped = false;
-        childScript.reached = false;
+        childScript.AngleClipped = false;
+        childScript.reachedAnim = false;
+        childScript.withinReach = false;
         anim.CrossFadeInFixedTime("take_off", 0.3f);
         //anim.CrossFadeInFixedTime("Run", 0.1f);
         anim.SetInteger("AnimationPar", 5);

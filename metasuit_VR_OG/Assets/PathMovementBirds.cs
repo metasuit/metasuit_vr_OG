@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using TreeEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,15 +29,17 @@ namespace AquariusMax.PolyNature
         public float ArmReachAnim = 10f;
         public float landingClipReach = 0.05f;
         public float deacceleration = 0.995f;
+        public float MinLandingSpeed = 0.5f;
         public float maxDeviationAngle = 70f;
         public CallBird callBirdScript;
         public ChangeMaterial changeMaterialScript;
 
+
         private Vector3 lastPosition;
         public bool Flying = true;
-        public bool Clipped = false;
-        public bool reached = false;
-        public bool LandingClipped = false;
+        public bool AngleClipped = false;
+        public bool reachedAnim = false;
+        public bool withinReach = false;
         private float distance;
         private Animator anim;
         private float origSpeedNearPlayer;
@@ -92,6 +95,7 @@ namespace AquariusMax.PolyNature
             // code for bird when stationary
             if (!Flying)
             {
+                //Disable Teleport
                 if (transform.up.y < 0) 
                 {
                     Debug.Log("Bird looks down");
@@ -112,15 +116,15 @@ namespace AquariusMax.PolyNature
 
 
                 // Start idle animation if within reach
-                if (distance <= ArmReachAnim && !reached)
+                if (distance <= ArmReachAnim && !reachedAnim)
                 {
                     //anim.SetInteger("AnimationPar", 2);
                     anim.CrossFadeInFixedTime("touch_down", 0.5f);
-                    reached = true;
+                    reachedAnim = true;
                 }
                 if (distance <= reach)
                 {
-                    
+                    withinReach = true;
                     anim.SetInteger("AnimationPar", 3);
                     Vector3 orthogonalComponent = armPosition.forward - Vector3.Project(armPosition.forward, elbowPosition.position-armPosition.position);
                     var armRotation = Quaternion.LookRotation(orthogonalComponent);
@@ -131,13 +135,13 @@ namespace AquariusMax.PolyNature
                    
 
                     var angle = Vector3.Angle(transform.forward, orthogonalComponent);
-                    if (angle > clippingThresholdAngle && Clipped == false)
+                    if (angle > clippingThresholdAngle && AngleClipped == false)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed);
                     }
                     else
                     {
-                        Clipped = true;
+                        AngleClipped = true;
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed * 25);
                     }
 
@@ -146,7 +150,8 @@ namespace AquariusMax.PolyNature
                     {
                             transform.position = positionOffset + offset;
                             float deviationAngle = Vector3.Angle(transform.up, Vector3.up);
-
+                            
+                            // fly off if angle with respect to global y axis to large
                             if (deviationAngle > maxDeviationAngle)
                             {
                                 callBirdScript.BirdFlyOff();
@@ -168,9 +173,10 @@ namespace AquariusMax.PolyNature
 
                 else if (distance <= ArmReach)
                 {
-                    
+                    if(withinReach) { callBirdScript.BirdFlyOff(); }
                     transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
-                    if (speedNearPlayer > 0.1f) { speedNearPlayer *= deacceleration; }
+                    if (speedNearPlayer > MinLandingSpeed) { speedNearPlayer *= deacceleration; }
+                    else { callBirdScript.BirdFlyOff(); }
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 } 
                 else

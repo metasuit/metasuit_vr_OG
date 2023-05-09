@@ -1638,10 +1638,10 @@ Transform:
   - {fileID: 310187623}
   - {fileID: 1639362559}
   - {fileID: 1481621612}
-  - {fileID: 1197241319}
   - {fileID: 2147140739}
   - {fileID: 596515966}
   - {fileID: 1718726735}
+  - {fileID: 1197241319}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1763,7 +1763,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58185524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4feb84d2df5982044a50a9a019b2a4d2, type: 3}
   m_Name: 
@@ -22317,7 +22317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 58185527}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &596515967
 SortingGroup:
@@ -29662,13 +29662,14 @@ MonoBehaviour:
   ArmReachAnim: 4.7
   landingClipReach: 0.05
   deacceleration: 0.995
+  MinLandingSpeed: 0.5
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
   Flying: 1
-  Clipped: 0
-  reached: 0
-  LandingClipped: 0
+  AngleClipped: 0
+  reachedAnim: 0
+  withinReach: 0
   moveTowardsElbow: 0.35
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &773388546
@@ -34051,13 +34052,14 @@ MonoBehaviour:
   ArmReachAnim: 1.5
   landingClipReach: 0.05
   deacceleration: 0.993
+  MinLandingSpeed: 0.35
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
   Flying: 1
-  Clipped: 0
-  reached: 0
-  LandingClipped: 0
+  AngleClipped: 0
+  reachedAnim: 0
+  withinReach: 0
   moveTowardsElbow: 0.35
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &887762170
@@ -47912,7 +47914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1197241319
 Transform:
   m_ObjectHideFlags: 0
@@ -47927,7 +47929,7 @@ Transform:
   m_Children:
   - {fileID: 350419188}
   m_Father: {fileID: 58185527}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &1197241320
 SortingGroup:
@@ -58806,13 +58808,14 @@ MonoBehaviour:
   ArmReachAnim: 2
   landingClipReach: 0.05
   deacceleration: 0.99
+  MinLandingSpeed: 0.38
   maxDeviationAngle: 40
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
   Flying: 1
-  Clipped: 0
-  reached: 0
-  LandingClipped: 0
+  AngleClipped: 0
+  reachedAnim: 0
+  withinReach: 0
   moveTowardsElbow: 0.35
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &1426187919
@@ -61300,13 +61303,14 @@ MonoBehaviour:
   ArmReachAnim: 4.2
   landingClipReach: 0.05
   deacceleration: 0.997
+  MinLandingSpeed: 0.6
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
   Flying: 1
-  Clipped: 0
-  reached: 0
-  LandingClipped: 0
+  AngleClipped: 0
+  reachedAnim: 0
+  withinReach: 0
   moveTowardsElbow: 0.25
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &1485371078 stripped
@@ -72275,7 +72279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1718726735
 Transform:
   m_ObjectHideFlags: 0
@@ -72290,7 +72294,7 @@ Transform:
   m_Children:
   - {fileID: 1279092206}
   m_Father: {fileID: 58185527}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &1718726736
 SortingGroup:
@@ -91125,7 +91129,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 58185527}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &2147140740
 SortingGroup:
