@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +28,9 @@ namespace AquariusMax.PolyNature
         public float ArmReachAnim = 10f;
         public float landingClipReach = 0.05f;
         public float deacceleration = 0.995f;
+        public float maxDeviationAngle = 70f;
+        public CallBird callBirdScript;
+        public ChangeMaterial changeMaterialScript;
 
         private Vector3 lastPosition;
         public bool Flying = true;
@@ -51,6 +55,7 @@ namespace AquariusMax.PolyNature
 
             origSpeedNearPlayer = speedNearPlayer;
         }
+
 
         // Update is called once per frame
         void Update()
@@ -87,13 +92,15 @@ namespace AquariusMax.PolyNature
             // code for bird when stationary
             if (!Flying)
             {
-
+                if (transform.up.y < 0) 
+                {
+                    Debug.Log("Bird looks down");
+                }
                 //handle landing
                 positionOffset = Vector3.Lerp(armPosition.position, elbowPosition.position, moveTowardsElbow);
 
                 // set position of node to arm
                // positionOffset = armPosition.InverseTransformPoint(elbowPosition.position);
-                Debug.Log("sdf,jkhskfh" + positionOffset);
 
                 pathToFollow.pathPoints[currentWayPointID].position = positionOffset + offset;
                 Debug.Log("ArmPosition: " + armPosition.position);
@@ -115,8 +122,15 @@ namespace AquariusMax.PolyNature
                 {
                     
                     anim.SetInteger("AnimationPar", 3);
-                    var armRotation = Quaternion.LookRotation(armPosition.forward);
-                    var angle = Vector3.Angle(transform.forward, armPosition.forward);
+                    Vector3 orthogonalComponent = armPosition.forward - Vector3.Project(armPosition.forward, elbowPosition.position-armPosition.position);
+                    var armRotation = Quaternion.LookRotation(orthogonalComponent);
+
+                    //Quaternion yRotation = Quaternion.FromToRotation(transform.up, Vector3.up);
+                    //transform.localRotation = yRotation * transform.localRotation;
+                    //transform.LookAt(transform.position + elbowPosition.forward, elbowPosition.up);
+                   
+
+                    var angle = Vector3.Angle(transform.forward, orthogonalComponent);
                     if (angle > clippingThresholdAngle && Clipped == false)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed);
@@ -131,6 +145,16 @@ namespace AquariusMax.PolyNature
                     if(distance <= landingClipReach)
                     {
                             transform.position = positionOffset + offset;
+                            float deviationAngle = Vector3.Angle(transform.up, Vector3.up);
+
+                            if (deviationAngle > maxDeviationAngle)
+                            {
+                                callBirdScript.BirdFlyOff();
+                            
+                            Debug.Log("Deviation angle is too large: " + deviationAngle);
+                                
+                            }
+
                     }
                     else
                     {

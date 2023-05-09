@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class ChangeMaterial : MonoBehaviour
 {
     public InputActionProperty showButton;
-    private Renderer objectRenderer;
+    public Renderer objectRenderer;
     public Material TucanMaterial;
     public Material ParrotMaterial;
     public Material CockatielMaterial;
@@ -28,17 +28,4 @@ public class ChangeMaterial : MonoBehaviour
         objectRenderer.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (showButton.action.WasPressedThisFrame())
-        {
-            objectRenderer.enabled = !objectRenderer.enabled;
-            if (objectRenderer.enabled)
-            {
-                objectRenderer.material = materials[callBirdScript.index_bird];
-
-            }
-        }
-    }
 }

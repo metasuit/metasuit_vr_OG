@@ -15,15 +15,18 @@ public class CallBird : MonoBehaviour
     public GameObject[] birds;
     public GameObject bird;
     public PathMovementBirds[] childScripts;
+    public ChangeMaterial changeMaterialScript;
     public float moveTowardsElbow = 1f;
 
-    private Vector3 lastPosition;
+    public Vector3 lastPosition;
     public int index_bird = 0;
     private Animator anim;
     public bool call_bird = true;
     public bool Debugging = false;
 
-
+    private WaypointPath pathToFollow;
+    private PathMovementBirds childScript;
+    private int currentWayPointID;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +40,10 @@ public class CallBird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WaypointPath pathToFollow = wayPointpaths[index_bird];
+        pathToFollow = wayPointpaths[index_bird];
         bird = birds[index_bird];
-        PathMovementBirds childScript = childScripts[index_bird];
-        int currentWayPointID = childScript.currentWayPointID;
+        childScript = childScripts[index_bird];
+        currentWayPointID = childScript.currentWayPointID;
         anim = bird.GetComponentInChildren<Animator>();
 
         if (showButton.action.WasPressedThisFrame())
@@ -53,36 +56,52 @@ public class CallBird : MonoBehaviour
                 pathToFollow.pathPoints[currentWayPointID].position = armPosition.position + childScript.positionOffset*childScript.moveTowardsElbow + childScript.offset;
                 call_bird = false;
                 childScript.Flying = false;
+
+                changeMaterialScript.objectRenderer.enabled = !changeMaterialScript.objectRenderer.enabled;
+                if (changeMaterialScript.objectRenderer.enabled)
+                {
+                    changeMaterialScript.objectRenderer.material = changeMaterialScript.materials[index_bird];
+
+                }
             }
             else
             {
-
-                //set back the node to its original position and starts take off
-                pathToFollow.pathPoints[currentWayPointID].position = lastPosition;
-                call_bird = true;
-                childScript.Flying = true;
-                childScript.Clipped = false;
-                childScript.reached = false;
-                anim.CrossFadeInFixedTime("take_off", 0.3f);
-                //anim.CrossFadeInFixedTime("Run", 0.1f);
-                anim.SetInteger("AnimationPar", 5);
-
-                //Debugging fix one bird -> comment index++
-                if (!Debugging)
-                {
-                    index_bird++;
-                }
-                
-
-                if(index_bird == birds.Length)
-                {
-                    index_bird = 0;
-                }
-
-
+                BirdFlyOff();
             }
 
         }
+
+    }
+    public void BirdFlyOff()
+    {
+        //set back the node to its original position and starts take off
+        pathToFollow.pathPoints[currentWayPointID].position = lastPosition;
+        call_bird = true;
+        childScript.Flying = true;
+        childScript.Clipped = false;
+        childScript.reached = false;
+        anim.CrossFadeInFixedTime("take_off", 0.3f);
+        //anim.CrossFadeInFixedTime("Run", 0.1f);
+        anim.SetInteger("AnimationPar", 5);
+
+        changeMaterialScript.objectRenderer.enabled = !changeMaterialScript.objectRenderer.enabled;
+        if (changeMaterialScript.objectRenderer.enabled)
+        {
+            changeMaterialScript.objectRenderer.material = changeMaterialScript.materials[index_bird];
+
+        }
+        //Debugging fix one bird -> comment index++
+        if (!Debugging)
+        {
+            index_bird++;
+        }
+
+
+        if (index_bird == birds.Length)
+        {
+            index_bird = 0;
+        }
+       
 
     }
 }
