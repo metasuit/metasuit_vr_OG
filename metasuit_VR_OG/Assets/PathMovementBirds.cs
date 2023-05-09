@@ -34,7 +34,7 @@ namespace AquariusMax.PolyNature
         public CallBird callBirdScript;
         public ChangeMaterial changeMaterialScript;
 
-
+        private AudioSource audioSource;
         private Vector3 lastPosition;
         public bool Flying = true;
         public bool AngleClipped = false;
@@ -57,6 +57,8 @@ namespace AquariusMax.PolyNature
             float distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
 
             origSpeedNearPlayer = speedNearPlayer;
+            audioSource = GetComponent<AudioSource>();
+
         }
 
 
@@ -119,6 +121,8 @@ namespace AquariusMax.PolyNature
                 if (distance <= ArmReachAnim && !reachedAnim)
                 {
                     //anim.SetInteger("AnimationPar", 2);
+                    audioSource.Play();
+
                     anim.CrossFadeInFixedTime("touch_down", 0.5f);
                     reachedAnim = true;
                 }
