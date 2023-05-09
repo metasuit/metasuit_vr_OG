@@ -45,6 +45,7 @@ public class CallBird : MonoBehaviour
         childScript = childScripts[index_bird];
         currentWayPointID = childScript.currentWayPointID;
         anim = bird.GetComponentInChildren<Animator>();
+        
 
         if (showButton.action.WasPressedThisFrame())
         {
@@ -74,6 +75,7 @@ public class CallBird : MonoBehaviour
     }
     public void BirdFlyOff()
     {
+        childScript.audioSourceTakeOff.Play();
         //set back the node to its original position and starts take off
         pathToFollow.pathPoints[currentWayPointID].position = lastPosition;
         call_bird = true;

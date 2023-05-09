@@ -34,7 +34,8 @@ namespace AquariusMax.PolyNature
         public CallBird callBirdScript;
         public ChangeMaterial changeMaterialScript;
 
-        private AudioSource audioSource;
+        public AudioSource audioSourceLanding;
+        public AudioSource audioSourceTakeOff;
         private Vector3 lastPosition;
         public bool Flying = true;
         public bool AngleClipped = false;
@@ -57,7 +58,6 @@ namespace AquariusMax.PolyNature
             float distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
 
             origSpeedNearPlayer = speedNearPlayer;
-            audioSource = GetComponent<AudioSource>();
 
         }
 
@@ -121,7 +121,7 @@ namespace AquariusMax.PolyNature
                 if (distance <= ArmReachAnim && !reachedAnim)
                 {
                     //anim.SetInteger("AnimationPar", 2);
-                    audioSource.Play();
+                    audioSourceLanding.Play();
 
                     anim.CrossFadeInFixedTime("touch_down", 0.5f);
                     reachedAnim = true;
@@ -203,7 +203,7 @@ namespace AquariusMax.PolyNature
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
 
-
+                // arm reach in this case not reach to arm but to next target node
                 if (distance <= ArmReach)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed);
