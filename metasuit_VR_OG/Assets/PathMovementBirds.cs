@@ -97,11 +97,7 @@ namespace AquariusMax.PolyNature
             // code for bird when stationary
             if (!Flying)
             {
-                //Disable Teleport
-                if (transform.up.y < 0) 
-                {
-                    Debug.Log("Bird looks down");
-                }
+              
                 //handle landing
                 positionOffset = Vector3.Lerp(armPosition.position, elbowPosition.position, moveTowardsElbow);
 
@@ -141,7 +137,7 @@ namespace AquariusMax.PolyNature
                     var angle = Vector3.Angle(transform.forward, orthogonalComponent);
                     if (angle > clippingThresholdAngle && AngleClipped == false)
                     {
-                        transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed * 2);
                     }
                     else
                     {
@@ -156,7 +152,7 @@ namespace AquariusMax.PolyNature
                             float deviationAngle = Vector3.Angle(transform.up, Vector3.up);
                             
                             // fly off if angle with respect to global y axis to large
-                            if (deviationAngle > maxDeviationAngle)
+                            if (deviationAngle > maxDeviationAngle && AngleClipped)
                             {
                                 callBirdScript.BirdFlyOff();
                             
@@ -177,6 +173,7 @@ namespace AquariusMax.PolyNature
 
                 else if (distance <= ArmReach)
                 {
+                    // if leave reach after reached once fly off
                     if(withinReach) { callBirdScript.BirdFlyOff(); }
                     transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
                     if (speedNearPlayer > MinLandingSpeed) { speedNearPlayer *= deacceleration; }
