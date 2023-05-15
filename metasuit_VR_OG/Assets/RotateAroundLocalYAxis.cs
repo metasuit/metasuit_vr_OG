@@ -14,17 +14,18 @@ using MathNet.Numerics.LinearAlgebra.Double;
 
 public class RotateAroundLocalYAxis : MonoBehaviour
 {
+    public bool calibrationVisualizationToggle = false;
+    public bool canWrite = false;
     public bool calibrated = false;
     bool dynamicCalibrationDone = false;
     bool startOfProgram = true;
     bool measureWithOldCalibrationValues = false;
-    private List<double> linregMeas = new List<double>();
-    private List<double> linregAngles = new List<double>();
     private Vector<double> coefficients = Vector<double>.Build.Dense(3);
 
-    public float amplitude = 45.0f;
-    public float frequency = 1.0f;
-    public float offset = 45.0f;
+    //public float amplitude = 45.0f;
+    //public float frequency = 1.0f;
+    //public float offset = 45.0f;
+    public int bodyPartIndex;
     public int RotationDirectionX = 0;
     public int RotationDirectionY = 1;
     public int RotationDirectionZ = 0;
@@ -92,36 +93,58 @@ public class RotateAroundLocalYAxis : MonoBehaviour
 
     IEnumerator CalibrateDynamic()
     {
+        List<double> linregMeas = new List<double>();
+        List<double> linregAngles = new List<double>();
+
         startOfProgram = false;
         measureWithOldCalibrationValues = false;
-        if (calibrated == false && bodyPartToggle.isOn)
+        if (calibrated == false && bodyPartToggle.isOn && canWrite)
         {
             float endTime = Time.time + calibrationTimeMove;
             float startTime = Time.time;
             while (Time.time < endTime)
             {
-                float sineWaveValue = (float)(Math.Sin((Time.time-startTime) * frequency - Math.PI / 2) * amplitude + offset);
+                //float sineWaveValue = (float)(Math.Sin((Time.time-startTime) * frequency - Math.PI / 2) * amplitude + offset);
 
                 float imp_meas = 0;
+                float angle_meas = 0;
                 for (int i = 0; i < numberOfHasels; i++)
-                {
-                    imp_meas += (float)dataProcessor.GetFilteredValue(i + firstHaselIndex - 1);                  
+                {                                                                                                                                                        
+                    imp_meas += (float)dataProcessor.GetImpedance(i + firstHaselIndex - 1);                  
                 }
                 imp_meas /= numberOfHasels;
 
+                angle_meas = (float)dataProcessor.GetAngle(bodyPartIndex);
                 // Calculate the new rotation around the Y axis using the sine wave value
-                Vector3 newRotation = new Vector3((sineWaveValue + AngleOffset) * RotationDirectionX, (sineWaveValue + AngleOffset) * RotationDirectionY, (sineWaveValue + AngleOffset) * RotationDirectionZ);
+                // Vector3 newRotation = new Vector3((sineWaveValue + AngleOffset) * RotationDirectionX, (sineWaveValue + AngleOffset) * RotationDirectionY, (sineWaveValue + AngleOffset) * RotationDirectionZ);
 
                 // Set the new rotation of the game object in Euler angles
-                transform.localEulerAngles = newRotation;
-
+                //transform.localEulerAngles = newRotation;
 
                 Debug.Log(imp_meas);
+
                 linregMeas.Add(imp_meas);
-                linregAngles.Add(sineWaveValue + AngleOffset);
+                linregAngles.Add(angle_meas);
 
                 yield return null;
             }
+
+
+            if (calibrationVisualizationToggle)
+            {
+                using (StreamWriter writer = new StreamWriter($@"C:\tmp\imp_meas_{firstHaselIndex}.txt", false))
+                {
+                    string fileContent = string.Join(",", linregMeas);
+                    writer.Write(fileContent);
+                }
+                using (StreamWriter writer = new StreamWriter($@"C:\tmp\angles_{firstHaselIndex}.txt", false))
+                {
+                    string fileContent = string.Join(",", linregAngles);
+                    writer.Write(fileContent);
+
+                }
+            }
+
             // Remove first few samples to account for inaccuracy at start of movement
             linregMeas.RemoveRange(0, 40);
             linregAngles.RemoveRange(0, 40);
@@ -149,35 +172,12 @@ public class RotateAroundLocalYAxis : MonoBehaviour
                 string fileContent = string.Join(",", coefficients);
                 writer.Write(fileContent);
             }
-
-            using (StreamWriter writer = new StreamWriter(@"C:\tmp\imp_meas.txt", false))
-            {
-                string fileContent = string.Join(",", linregMeas);
-                writer.Write(fileContent);
-            }
-            using (StreamWriter writer = new StreamWriter(@"C:\tmp\angles.txt", false))
-            {
-                string fileContent = string.Join(",", linregAngles);
-                writer.Write(fileContent);
-       
-            }
+            */
             Debug.Log("measurements" + linregMeas.Count().ToString());
             Debug.Log("angles" + linregAngles.Count().ToString());
-            */
+            
             dynamicCalibrationDone = true;
             StartCoroutine(ChangeDynamicButtonColor());
-            /*
-            if (calibrationVoltage1 - calibrationVoltage2 == 69) // "if condition" needs change
-            {
-                Debug.Log("Calibration voltage 1 is equal to calibration voltage 2. Try to calibrate again");
-                StartCoroutine(ChangeDynamicButtonColorError());
-            }
-            else
-            {
-                secondCalibrationDone = true;
-                StartCoroutine(ChangeDynamicButtonColor());
-            }
-            */
         }
     }
 
@@ -237,7 +237,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             for (int i = 0; i < numberOfHasels; i++)
             {
                 // Get values from dataprocessor object
-                floatValues[i] = (float)dataProcessor.GetFilteredValue(i+firstHaselIndex-1);
+                floatValues[i] = (float)dataProcessor.GetImpedance(i+firstHaselIndex-1);
                 vectorRotation += coefficients[0] * floatValues[i]*floatValues[i] + coefficients[1] * floatValues[i] + coefficients[2];
             }
             vectorRotation /= numberOfHasels;
