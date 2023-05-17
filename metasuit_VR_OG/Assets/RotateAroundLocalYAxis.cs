@@ -245,8 +245,8 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             }
             vectorRotation /= numberOfHasels;
             //Restrict Rotation
-            if(vectorRotation > MaxRotationAngle) { vectorRotation = MaxRotationAngle; }
-            else if(vectorRotation < MinRotationAngle) { vectorRotation = MinRotationAngle; }
+            if(vectorRotation + AngleOffset > MaxRotationAngle) { vectorRotation = MaxRotationAngle; }
+            else if(vectorRotation + AngleOffset < MinRotationAngle) { vectorRotation = MinRotationAngle; }
 
             Vector3 to = new Vector3(((float)vectorRotation + AngleOffset) * RotationDirectionX , ((float)vectorRotation + AngleOffset) * RotationDirectionY, ((float)vectorRotation + AngleOffset) * RotationDirectionZ);
             transform.localEulerAngles = to;          
