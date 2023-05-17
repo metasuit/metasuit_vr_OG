@@ -31604,6 +31604,8 @@ MonoBehaviour:
   RotationDirectionY: 1
   RotationDirectionZ: 0
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 1
@@ -35277,6 +35279,8 @@ MonoBehaviour:
   RotationDirectionY: -1
   RotationDirectionZ: 0
   AngleOffset: 180
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 2
@@ -38097,6 +38101,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: -1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 7
@@ -38286,6 +38292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: C:\tmp\values_muxes.txt
+  applyMovingAverageToAngles: 1
 --- !u!4 &976083928
 Transform:
   m_ObjectHideFlags: 0
@@ -42355,6 +42362,8 @@ MonoBehaviour:
   RotationDirectionY: -1
   RotationDirectionZ: 0
   AngleOffset: 180
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 15
   numberOfHasels: 1
   firstHaselIndex: 5
@@ -52733,6 +52742,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: -1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 2
@@ -56183,6 +56194,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: 1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 7
@@ -56749,6 +56762,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: -1
   AngleOffset: 180
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 10
   numberOfHasels: 1
   firstHaselIndex: 3
@@ -66497,6 +66512,8 @@ MonoBehaviour:
   RotationDirectionY: 1
   RotationDirectionZ: 0
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 7
@@ -71328,6 +71345,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: 1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 1
@@ -74409,6 +74428,8 @@ MonoBehaviour:
   RotationDirectionY: 1
   RotationDirectionZ: 0
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 15
   numberOfHasels: 1
   firstHaselIndex: 3
@@ -76279,6 +76300,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: 1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 10
   numberOfHasels: 1
   firstHaselIndex: 5
@@ -77920,6 +77943,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: 1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 4
@@ -88239,6 +88264,8 @@ MonoBehaviour:
   RotationDirectionY: 0
   RotationDirectionZ: -1
   AngleOffset: 0
+  MaxRotationAngle: 180
+  MinRotationAngle: -180
   calibrationTimeMove: 4
   numberOfHasels: 1
   firstHaselIndex: 1
@@ -89386,7 +89413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2130738733
 MonoBehaviour:
   m_ObjectHideFlags: 0

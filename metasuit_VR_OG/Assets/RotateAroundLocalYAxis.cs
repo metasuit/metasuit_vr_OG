@@ -20,7 +20,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     bool dynamicCalibrationDone = false;
     bool startOfProgram = true;
     bool measureWithOldCalibrationValues = false;
-    private Vector<double> coefficients = Vector<double>.Build.Dense(3);
+    private Vector<double> coefficients = Vector<double>.Build.Dense(4);
 
     //public float amplitude = 45.0f;
     //public float frequency = 1.0f;
@@ -30,6 +30,8 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     public int RotationDirectionY = 1;
     public int RotationDirectionZ = 0;
     public int AngleOffset = 0;
+    public int MaxRotationAngle = 180;
+    public int MinRotationAngle = -180;
     public float calibrationTimeMove = 6;
     public int numberOfHasels;
     public int firstHaselIndex;
@@ -154,7 +156,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             double[] AnglesArray = linregAngles.ToArray();
 
             // Define the model function
-            double[][] A = MeasArray.Select(x => new[] {Math.Pow(x, 2), x, 1.0 }).ToArray();
+            double[][] A = MeasArray.Select(x => new[] {Math.Pow(x, 3), Math.Pow(x, 2), x, 1.0 }).ToArray();
             double[] y = AnglesArray;
 
             // Convert the arrays to matrices
@@ -200,6 +202,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
         calibrationList.Add(coefficients[0]);
         calibrationList.Add(coefficients[1]);
         calibrationList.Add(coefficients[2]);
+        calibrationList.Add(coefficients[3]);
         using (StreamWriter writer = new StreamWriter($@"C:\tmp\values_calibration_{firstHaselIndex}.txt", false))
         {
             string fileContent = string.Join(",", calibrationList);
@@ -241,6 +244,9 @@ public class RotateAroundLocalYAxis : MonoBehaviour
                 vectorRotation += coefficients[0] * floatValues[i]*floatValues[i] + coefficients[1] * floatValues[i] + coefficients[2];
             }
             vectorRotation /= numberOfHasels;
+            //Restrict Rotation
+            if(vectorRotation > MaxRotationAngle) { vectorRotation = MaxRotationAngle; }
+            else if(vectorRotation < MinRotationAngle) { vectorRotation = MinRotationAngle; }
 
             Vector3 to = new Vector3(((float)vectorRotation + AngleOffset) * RotationDirectionX , ((float)vectorRotation + AngleOffset) * RotationDirectionY, ((float)vectorRotation + AngleOffset) * RotationDirectionZ);
             transform.localEulerAngles = to;          
