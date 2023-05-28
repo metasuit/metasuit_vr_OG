@@ -1844,6 +1844,7 @@ Transform:
   - {fileID: 596515966}
   - {fileID: 1718726735}
   - {fileID: 1197241319}
+  - {fileID: 659685145}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -13841,11 +13842,14 @@ MonoBehaviour:
   - {fileID: 773382204}
   - {fileID: 1425965178}
   changeMaterialScript: {fileID: 198939708}
+  communicator: {fileID: 1330857600}
   moveTowardsElbow: 100
   lastPosition: {x: 0, y: 0, z: 0}
   index_bird: 0
   call_bird: 1
   Debugging: 0
+  polarity: 0
+  isZipped: 0
 --- !u!4 &358472939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5913434512563367662, guid: 29f9b4b858ae2b74c85c9dd40ca713c9, type: 3}
@@ -25284,6 +25288,115 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5767d728634e940951149363a0cc17, type: 3}
+--- !u!1 &659685140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 659685145}
+  - component: {fileID: 659685144}
+  - component: {fileID: 659685143}
+  - component: {fileID: 659685142}
+  - component: {fileID: 659685141}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &659685141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659685140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1732852a5a827ba4490698f39ded1798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAt: {fileID: 2128191320}
+  camTransform: {fileID: 2128191320}
+  distance: 8
+--- !u!81 &659685142
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659685140}
+  m_Enabled: 1
+--- !u!124 &659685143
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659685140}
+  m_Enabled: 1
+--- !u!20 &659685144
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659685140}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &659685145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659685140}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.0000040829177}
+  m_LocalPosition: {x: 3.252411, y: 8.480201, z: -13.650238}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 58185527}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &661314622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9065568712750590709, guid: b005b641b5fbeb94b83509b3a190987a, type: 3}
@@ -29698,6 +29811,8 @@ MonoBehaviour:
   moveSpeed: 5
   reach: 0.25
   ArmReach: 7
+  ZippingReach: 0.7
+  DutyCycle: 75
   rotationSpeed: 1.5
   pathName: 
   clippingThresholdAngle: 3
@@ -29709,6 +29824,7 @@ MonoBehaviour:
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
+  communicator: {fileID: 1330857600}
   audioSourceLanding: {fileID: 773382208}
   audioSourceTakeOff: {fileID: 773382209}
   Flying: 1
@@ -31603,7 +31719,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 1
   RotationDirectionZ: 0
-  AngleOffset: 0
+  AngleOffset: -190
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 4
@@ -34133,6 +34249,8 @@ MonoBehaviour:
   moveSpeed: 5
   reach: 0.25
   ArmReach: 7
+  ZippingReach: 0.8
+  DutyCycle: 90
   rotationSpeed: 1.5
   pathName: 
   clippingThresholdAngle: 3
@@ -34144,6 +34262,7 @@ MonoBehaviour:
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
+  communicator: {fileID: 1330857600}
   audioSourceLanding: {fileID: 887532391}
   audioSourceTakeOff: {fileID: 887532392}
   Flying: 1
@@ -35276,9 +35395,9 @@ MonoBehaviour:
   calibrated: 0
   bodyPartIndex: 3
   RotationDirectionX: 0
-  RotationDirectionY: -1
+  RotationDirectionY: 1
   RotationDirectionZ: 0
-  AngleOffset: 180
+  AngleOffset: 0
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 4
@@ -38292,6 +38411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: C:\tmp\values_muxes.txt
+  fileNameAngles: C:\tmp\values_angles.txt
   applyMovingAverageToAngles: 1
 --- !u!4 &976083928
 Transform:
@@ -42359,7 +42479,7 @@ MonoBehaviour:
   calibrated: 0
   bodyPartIndex: 0
   RotationDirectionX: 0
-  RotationDirectionY: -1
+  RotationDirectionY: 1
   RotationDirectionZ: 0
   AngleOffset: 180
   MaxRotationAngle: 180
@@ -46538,6 +46658,7 @@ Transform:
   m_Children:
   - {fileID: 2130738736}
   - {fileID: 976083928}
+  - {fileID: 1330857599}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52740,8 +52861,8 @@ MonoBehaviour:
   bodyPartIndex: 3
   RotationDirectionX: 0
   RotationDirectionY: 0
-  RotationDirectionZ: -1
-  AngleOffset: 0
+  RotationDirectionZ: 1
+  AngleOffset: 180
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 4
@@ -54993,6 +55114,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c46c9486bbabb74388809b7d7181cef, type: 3}
+--- !u!1 &1330857598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1330857599}
+  - component: {fileID: 1330857600}
+  m_Layer: 0
+  m_Name: SerialCommunicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1330857599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330857598}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 358.95276, y: 4.6725335, z: 317.13968}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1168239198}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1330857600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330857598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967cc539931f72c47b6e7d6ebd22dd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM6
+  baudRate: 9600
+  activateZipping: 0
 --- !u!4 &1332086460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5247680784486199593, guid: 278df7145a725be4795b8af1ed39c099, type: 3}
@@ -56181,7 +56349,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414830552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
   m_Name: 
@@ -56193,7 +56361,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: 1
-  AngleOffset: 0
+  AngleOffset: 180
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 4
@@ -56749,7 +56917,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386401481}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
   m_Name: 
@@ -56760,8 +56928,8 @@ MonoBehaviour:
   bodyPartIndex: 2
   RotationDirectionX: 0
   RotationDirectionY: 0
-  RotationDirectionZ: -1
-  AngleOffset: 180
+  RotationDirectionZ: 1
+  AngleOffset: 0
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 10
@@ -58410,6 +58578,8 @@ MonoBehaviour:
   moveSpeed: 5
   reach: 0.25
   ArmReach: 5
+  ZippingReach: 1
+  DutyCycle: 50
   rotationSpeed: 1.5
   pathName: 
   clippingThresholdAngle: 3
@@ -58421,6 +58591,7 @@ MonoBehaviour:
   maxDeviationAngle: 40
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
+  communicator: {fileID: 1330857600}
   audioSourceLanding: {fileID: 1425965182}
   audioSourceTakeOff: {fileID: 1425965183}
   Flying: 1
@@ -61099,6 +61270,8 @@ MonoBehaviour:
   moveSpeed: 5
   reach: 0.25
   ArmReach: 7.5
+  ZippingReach: 1.1
+  DutyCycle: 120
   rotationSpeed: 1.5
   pathName: 
   clippingThresholdAngle: 3
@@ -61110,6 +61283,7 @@ MonoBehaviour:
   maxDeviationAngle: 50
   callBirdScript: {fileID: 356193489}
   changeMaterialScript: {fileID: 198939708}
+  communicator: {fileID: 1330857600}
   audioSourceLanding: {fileID: 1484900415}
   audioSourceTakeOff: {fileID: 1484900416}
   Flying: 1
@@ -66499,7 +66673,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600927680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
   m_Name: 
@@ -71344,7 +71518,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: 1
-  AngleOffset: 0
+  AngleOffset: 180
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 4
@@ -76287,7 +76461,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818901079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdfb4e707abdd1c4eadb3876078b31b4, type: 3}
   m_Name: 
@@ -76299,7 +76473,7 @@ MonoBehaviour:
   RotationDirectionX: 0
   RotationDirectionY: 0
   RotationDirectionZ: 1
-  AngleOffset: 0
+  AngleOffset: 180
   MaxRotationAngle: 180
   MinRotationAngle: -180
   calibrationTimeMove: 10

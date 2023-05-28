@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Sockets;
 using TreeEditor;
 using Unity.VisualScripting;
@@ -12,7 +14,6 @@ namespace AquariusMax.PolyNature
 {
     public class PathMovementBirds : MonoBehaviour
     {
-
         public WaypointPath pathToFollow;
        // public InputActionProperty showButton;
         public Transform armPosition;
@@ -22,6 +23,8 @@ namespace AquariusMax.PolyNature
         public float moveSpeed = 5f;
         public float reach = 0.25f;
         public float ArmReach = 10.0f;
+        public float ZippingReach = 1f;
+        public int DutyCycle = 80;
         public float rotationSpeed = 1.5f;
         public string pathName;
         public float clippingThresholdAngle = 3f;
@@ -33,6 +36,7 @@ namespace AquariusMax.PolyNature
         public float maxDeviationAngle = 70f;
         public CallBird callBirdScript;
         public ChangeMaterial changeMaterialScript;
+        public SerialCommunicator communicator;
 
         public AudioSource audioSourceLanding;
         public AudioSource audioSourceTakeOff;
@@ -43,10 +47,10 @@ namespace AquariusMax.PolyNature
         public bool withinReach = false;
         private float distance;
         private Animator anim;
-        private float origSpeedNearPlayer;
+        private float origSpeedNearPlayer; 
         public float moveTowardsElbow = 0.3f;
-        public Vector3 positionOffset;
-
+        public Vector3 positionOffset;  
+        private bool polarityState = false; //bool to define whether HL or LH
 
 
         // Use this for initialization
@@ -97,7 +101,8 @@ namespace AquariusMax.PolyNature
             // code for bird when stationary
             if (!Flying)
             {
-              
+
+                bool notFlyingAway = true;
                 //handle landing
                 positionOffset = Vector3.Lerp(armPosition.position, elbowPosition.position, moveTowardsElbow);
 
@@ -105,23 +110,31 @@ namespace AquariusMax.PolyNature
                // positionOffset = armPosition.InverseTransformPoint(elbowPosition.position);
 
                 pathToFollow.pathPoints[currentWayPointID].position = positionOffset + offset;
-                Debug.Log("ArmPosition: " + armPosition.position);
-                Debug.Log("Offset: " + offset);
-                Debug.Log("positionOffset" + positionOffset);
-                Debug.Log("joint:" + pathToFollow.pathPoints[currentWayPointID].position);
+                //Debug.Log("ArmPosition: " + armPosition.position);
+                //Debug.Log("Offset: " + offset);
+                //Debug.Log("positionOffset" + positionOffset);
+                //Debug.Log("joint:" + pathToFollow.pathPoints[currentWayPointID].position);
                 distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
                 var rotation = Quaternion.LookRotation(pathToFollow.pathPoints[currentWayPointID].position - transform.position);
 
 
-                // Start idle animation if within reach
+                // Start landing animation if within animation armreach
                 if (distance <= ArmReachAnim && !reachedAnim)
                 {
                     //anim.SetInteger("AnimationPar", 2);
                     audioSourceLanding.Play();
 
                     anim.CrossFadeInFixedTime("touch_down", 0.5f);
-                    reachedAnim = true;
+                    reachedAnim = true; //animation activated
                 }
+
+                // ACTUATION
+                // Check whether bird within start zipping reach and if zipping/serial port is activated
+               
+                // ACTUATION
+
+
+                // Start idle animation if within reach
                 if (distance <= reach)
                 {
                     withinReach = true;
@@ -137,10 +150,12 @@ namespace AquariusMax.PolyNature
                     var angle = Vector3.Angle(transform.forward, orthogonalComponent);
                     if (angle > clippingThresholdAngle && AngleClipped == false)
                     {
+                        //if not locked yet slowly rotate bird towards its clipping rotation
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed * 2);
                     }
                     else
                     {
+                        //increase rotation speed to lock bird to arm rotation once its reached the clipping rotation
                         AngleClipped = true;
                         transform.rotation = Quaternion.Slerp(transform.rotation, armRotation, Time.deltaTime * rotationSpeed * 25);
                     }
@@ -155,7 +170,9 @@ namespace AquariusMax.PolyNature
                             if (deviationAngle > maxDeviationAngle && AngleClipped)
                             {
                                 callBirdScript.BirdFlyOff();
-                            
+                                notFlyingAway = false;
+
+
                             Debug.Log("Deviation angle is too large: " + deviationAngle);
                                 
                             }
@@ -174,10 +191,18 @@ namespace AquariusMax.PolyNature
                 else if (distance <= ArmReach)
                 {
                     // if leave reach after reached once fly off
-                    if(withinReach) { callBirdScript.BirdFlyOff(); }
+                    if(withinReach) {
+                        callBirdScript.BirdFlyOff();
+                        notFlyingAway = false;
+
+                    }
                     transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed * speedNearPlayer);
                     if (speedNearPlayer > MinLandingSpeed) { speedNearPlayer *= deacceleration; }
-                    else { callBirdScript.BirdFlyOff(); }
+                    else { 
+                        callBirdScript.BirdFlyOff();
+                        notFlyingAway = false;
+
+                    }
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 } 
                 else
@@ -188,6 +213,22 @@ namespace AquariusMax.PolyNature
                         // rotation if angle is small enough but still outside of reach
                         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
                 }
+
+                if (distance <= ZippingReach && communicator.activateZipping && notFlyingAway)
+                {
+                   
+                    try
+                    {
+                        communicator.SendDutyCycle(DutyCycle); //Send dutycycle of bird to DCDC
+                    }
+                    catch (IOException ex)
+                    {
+                        // Handle the IOException here
+                        Debug.LogError("IOException caught: " + ex.Message);
+                    }
+                    callBirdScript.isZipped = true;
+                }
+
 
             }
             else

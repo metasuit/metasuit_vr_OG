@@ -45,7 +45,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
 
     private void Start()
     {
-        // Read from File
+        // Inititalize calibration wtih last calibrated values
         FileStream fileStream = new FileStream($@"C:\tmp\values_calibration_{firstHaselIndex}.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         using (StreamReader sr = new StreamReader(fileStream))
         {
@@ -56,11 +56,12 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             }
             else
             {
-                // Get last calibration values
+                // Get calibration coefficients of linear regression fit
                 string[] values = line.Split(',');
                 coefficients[0] = float.Parse(values[0]);
                 coefficients[1] = float.Parse(values[1]);
                 coefficients[2] = float.Parse(values[2]);
+                coefficients[3] = float.Parse(values[3]);
             }
         }
         calibrateButton3.onClick.AddListener(ButtonClick3);
@@ -82,6 +83,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
         }
         else if (bodyPartToggle.isOn && startOfProgram == true)
         {
+            // if started without calibrating, use old calibration values
             measureWithOldCalibrationValues = true;
             StartCoroutine(ChangeApplicationButtonColor());
         }
@@ -104,6 +106,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
         {
             float endTime = Time.time + calibrationTimeMove;
             float startTime = Time.time;
+            // get impedance and angle measurements for calibration
             while (Time.time < endTime)
             {
                 //float sineWaveValue = (float)(Math.Sin((Time.time-startTime) * frequency - Math.PI / 2) * amplitude + offset);
@@ -122,6 +125,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
 
                 // Set the new rotation of the game object in Euler angles
                 //transform.localEulerAngles = newRotation;
+         
 
                 Debug.Log(imp_meas);
 
@@ -131,7 +135,9 @@ public class RotateAroundLocalYAxis : MonoBehaviour
                 yield return null;
             }
 
+           
 
+            //save measurements if toggled
             if (calibrationVisualizationToggle)
             {
                 using (StreamWriter writer = new StreamWriter($@"C:\tmp\imp_meas_{firstHaselIndex}.txt", false))
@@ -147,9 +153,11 @@ public class RotateAroundLocalYAxis : MonoBehaviour
                 }
             }
 
+            /*
             // Remove first few samples to account for inaccuracy at start of movement
             linregMeas.RemoveRange(0, 40);
             linregAngles.RemoveRange(0, 40);
+            */
 
             // Convert the data to array
             double[] MeasArray = linregMeas.ToArray();
@@ -166,8 +174,8 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             //multiple regression
             coefficients = MultipleRegression.NormalEquations(X, Y);
 
-            //Debugging, write coefficients and arrays into files to visualize relationship
 
+            //Debugging, write coefficients and arrays into files to visualize relationship
             /*
             using (StreamWriter writer = new StreamWriter(@"C:\tmp\lr_coefficients.txt", false))
             {
@@ -218,19 +226,16 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     }
 
 
-    public void RotationUpdate(System.Single value) //update rotation with slider during calibration
-    {
-        if (calibrated == false && bodyPartToggle.isOn)
-        {
-            Vector3 to = new Vector3((value + AngleOffset) * RotationDirectionX, (value + AngleOffset) * RotationDirectionY, (value + AngleOffset) * RotationDirectionZ);
-            transform.localEulerAngles = to;
-        }
-
-    }
-
     // Update is called once per frame
     void Update()
     {
+
+        //float angle_meas = (float)dataProcessor.GetAngle(bodyPartIndex);
+        //Vector3 toforvideo = new Vector3((angle_meas + AngleOffset) * RotationDirectionX, (angle_meas + AngleOffset) * RotationDirectionY, (angle_meas + AngleOffset) * RotationDirectionZ);
+       // Debug.Log(toforvideo);
+
+        //transform.localEulerAngles = toforvideo;
+
         // Check if body part is activated and calibrated
         if (bodyPartToggle.isOn && (calibrated == true || measureWithOldCalibrationValues == true))
         {
@@ -241,7 +246,7 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             {
                 // Get values from dataprocessor object
                 floatValues[i] = (float)dataProcessor.GetImpedance(i+firstHaselIndex-1);
-                vectorRotation += coefficients[0] * floatValues[i]*floatValues[i] + coefficients[1] * floatValues[i] + coefficients[2];
+                vectorRotation += coefficients[0] * floatValues[i] * floatValues[i] * floatValues[i] + coefficients[1] * floatValues[i] * floatValues[i] + coefficients[2] * floatValues[i] + coefficients[3];
             }
             vectorRotation /= numberOfHasels;
             //Restrict Rotation

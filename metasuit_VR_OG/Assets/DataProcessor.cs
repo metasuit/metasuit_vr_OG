@@ -7,6 +7,7 @@ using UnityEngine;
 public class DataProcessor : MonoBehaviour
 {
     public string fileName = @"C:\tmp\values_muxes.txt";
+    public string fileNameAngles = @"C:\tmp\values_angles.txt";
     public bool applyMovingAverageToAngles = true;
 
     private double[] imp_meas = new double[7];
@@ -46,7 +47,6 @@ public class DataProcessor : MonoBehaviour
                 filteredValuesAngles.Add(0.0); 
             }
         }
-
         // Start a coroutine to continuously read and process the data from the txt file
         StartCoroutine(ReadAndProcessData());
 
@@ -54,6 +54,8 @@ public class DataProcessor : MonoBehaviour
 
     private IEnumerator ReadAndProcessData()
     {
+        //Debug.Log("Worksss");
+
         // Wait for one frame to ensure that all Start methods have been called
         yield return null;
 
@@ -77,7 +79,7 @@ public class DataProcessor : MonoBehaviour
             }
         }
 
-        FileStream fileStream2 = new FileStream(@"C:\tmp\values_angles.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        FileStream fileStream2 = new FileStream(fileNameAngles, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         using (StreamReader sr = new StreamReader(fileStream2))
         {
             string line = sr.ReadLine();
@@ -87,11 +89,14 @@ public class DataProcessor : MonoBehaviour
             }
             else
             {
+
+                //Debug.Log("Works");
                 // Get last calibration values
                 string[] values = line.Split(',');
                 for (int i = 0; i < values.Length; i++)
                 {
                     angle_meas[i] = double.Parse(values[i]);
+                    //Debug.Log(angle_meas[i]);
                 }
                 
 
@@ -130,6 +135,11 @@ public class DataProcessor : MonoBehaviour
     }
     public double GetAngle(int index)
     {
+        //for(int i = 0; i < angle_meas.Length; i++)
+        //{
+        //    Debug.Log(angle_meas[i]);
+        //}
+       
         // Return filtered value at given index
         if (applyMovingAverageToAngles)
         {

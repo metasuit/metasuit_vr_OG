@@ -1,6 +1,8 @@
 using AquariusMax.PolyNature;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +18,7 @@ public class CallBird : MonoBehaviour
     public GameObject bird;
     public PathMovementBirds[] childScripts;
     public ChangeMaterial changeMaterialScript;
+    public SerialCommunicator communicator;
     public float moveTowardsElbow = 1f;
 
     public Vector3 lastPosition;
@@ -23,6 +26,9 @@ public class CallBird : MonoBehaviour
     private Animator anim;
     public bool call_bird = true;
     public bool Debugging = false;
+
+    public bool polarity = false;
+    public bool isZipped = false;
 
     private WaypointPath pathToFollow;
     private PathMovementBirds childScript;
@@ -45,13 +51,12 @@ public class CallBird : MonoBehaviour
         childScript = childScripts[index_bird];
         currentWayPointID = childScript.currentWayPointID;
         anim = bird.GetComponentInChildren<Animator>();
-        
 
+       
         if (showButton.action.WasPressedThisFrame())
         {
             if (call_bird)
             {
-
                 //saves position of node and sets position of node to position of arm
                 lastPosition = pathToFollow.pathPoints[currentWayPointID].position;
                 pathToFollow.pathPoints[currentWayPointID].position = armPosition.position + childScript.positionOffset*childScript.moveTowardsElbow + childScript.offset;
@@ -73,6 +78,7 @@ public class CallBird : MonoBehaviour
         }
 
     }
+  
     public void BirdFlyOff()
     {
         childScript.audioSourceTakeOff.Play();
@@ -81,11 +87,70 @@ public class CallBird : MonoBehaviour
         call_bird = true;
         childScript.Flying = true;
         childScript.AngleClipped = false;
-        childScript.reachedAnim = false;
         childScript.withinReach = false;
+
+        // ANIMATION
+        childScript.reachedAnim = false;
         anim.CrossFadeInFixedTime("take_off", 0.3f);
         //anim.CrossFadeInFixedTime("Run", 0.1f);
         anim.SetInteger("AnimationPar", 5);
+        // ANIMATION
+
+
+        // ACTUATION
+        if (communicator.activateZipping && isZipped)
+        {
+            int polarityValue = polarity ? 1 : 0;
+            polarityValue += 254;
+            Debug.Log(polarityValue);
+
+            bool success = false;
+            
+            for(int i = 0; i < 5; i++)
+            {
+                while (!success)
+                {
+                    try
+                    {
+
+                        communicator.SendDutyCycle(polarityValue); //Set to LowLow
+                        success = true;
+                    }
+                    catch (IOException ex)
+                    {
+                        // Handle the IOException here
+                        Debug.LogError("IOException caught: " + ex.Message);
+
+                    }
+                }
+                success = false;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                while (!success)
+                {
+                    try
+                    {
+
+                        communicator.SendDutyCycle(0); //Set to LowLow
+                        success = true;
+                    }
+                    catch (IOException ex)
+                    {
+                        // Handle the IOException here
+                        Debug.LogError("IOException caught: " + ex.Message);
+
+                    }
+                }
+                success = false;
+            }
+            polarity = !polarity;
+            isZipped = false;
+
+
+        }
+        // ACTUACTION
 
         changeMaterialScript.objectRenderer.enabled = !changeMaterialScript.objectRenderer.enabled;
         if (changeMaterialScript.objectRenderer.enabled)
