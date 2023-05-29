@@ -35622,7 +35622,7 @@ MonoBehaviour:
   MinRotationAngle: 90
   calibrationTimeMove: 10
   numberOfHasels: 1
-  firstHaselIndex: 3
+  firstHaselIndex: 1
   calibrateButton3: {fileID: 417214030}
   calibrationSlider1: {fileID: 0}
   calibrationSlider2: {fileID: 0}
@@ -42704,7 +42704,7 @@ MonoBehaviour:
   AngleOffset: -180
   MaxRotationAngle: 120
   MinRotationAngle: -10
-  calibrationTimeMove: 15
+  calibrationTimeMove: 10
   numberOfHasels: 1
   firstHaselIndex: 7
   calibrateButton3: {fileID: 417214030}
@@ -46231,7 +46231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1153607226
 Transform:
   m_ObjectHideFlags: 0
@@ -53085,9 +53085,9 @@ MonoBehaviour:
   AngleOffset: -180
   MaxRotationAngle: 30
   MinRotationAngle: -90
-  calibrationTimeMove: 4
+  calibrationTimeMove: 10
   numberOfHasels: 1
-  firstHaselIndex: 3
+  firstHaselIndex: 1
   calibrateButton3: {fileID: 417214030}
   calibrationSlider1: {fileID: 0}
   calibrationSlider2: {fileID: 0}
@@ -57154,7 +57154,7 @@ MonoBehaviour:
   MinRotationAngle: 90
   calibrationTimeMove: 10
   numberOfHasels: 1
-  firstHaselIndex: 1
+  firstHaselIndex: 3
   calibrateButton3: {fileID: 417214030}
   calibrationSlider1: {fileID: 0}
   calibrationSlider2: {fileID: 0}
@@ -71741,7 +71741,7 @@ MonoBehaviour:
   AngleOffset: -180
   MaxRotationAngle: 120
   MinRotationAngle: -10
-  calibrationTimeMove: 4
+  calibrationTimeMove: 10
   numberOfHasels: 1
   firstHaselIndex: 5
   calibrateButton3: {fileID: 417214030}
@@ -74824,9 +74824,9 @@ MonoBehaviour:
   AngleOffset: 0
   MaxRotationAngle: 210
   MinRotationAngle: 90
-  calibrationTimeMove: 15
+  calibrationTimeMove: 10
   numberOfHasels: 1
-  firstHaselIndex: 1
+  firstHaselIndex: 3
   calibrateButton3: {fileID: 417214030}
   calibrationSlider1: {fileID: 0}
   calibrationSlider2: {fileID: 0}
