@@ -34,10 +34,13 @@ namespace AquariusMax.PolyNature
             float distance = Vector3.Distance(pathToFollow.pathPoints[currentWayPointID].position, transform.position);
             transform.position = Vector3.MoveTowards(transform.position, pathToFollow.pathPoints[currentWayPointID].position, Time.deltaTime * moveSpeed);
 
-            var rotation = Quaternion.LookRotation(pathToFollow.pathPoints[currentWayPointID].position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+            
+            if (pathToFollow.pathPoints[currentWayPointID].position - transform.position != Vector3.zero)
+            {
+                var rotation = Quaternion.LookRotation(pathToFollow.pathPoints[currentWayPointID].position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+            }
 
-             
             if (distance <= reach)
             {
                 currentWayPointID++;

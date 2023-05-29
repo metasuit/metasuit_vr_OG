@@ -70,24 +70,54 @@ public class RotateAroundLocalYAxis : MonoBehaviour
     }
     void StartCalibration()
     {
-        calibrated = false;
-        dynamicCalibrationDone = false;
-        startOfProgram = false;
-        measureWithOldCalibrationValues = false;
+        if(bodyPartToggle.isOn)
+        {
+            calibrated = false;
+            dynamicCalibrationDone = false;
+            startOfProgram = false;
+            measureWithOldCalibrationValues = false;
+        }
     }
     void EndCalibration()
     {
-        if (dynamicCalibrationDone)
+        if (bodyPartToggle.isOn)
         {
-            calibrated = true;
+            if (!canWrite) // if body part which doesn't write -> get newest calibration values
+            {
+                // Inititalize calibration wtih last calibrated values
+                FileStream fileStream = new FileStream($@"C:\tmp\values_calibration_{firstHaselIndex}.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using (StreamReader sr = new StreamReader(fileStream))
+                {
+                    string line = sr.ReadLine();
+                    if (string.IsNullOrEmpty(line))
+                    {
+                        Debug.Log("No calibration data in file");
+                    }
+                    else
+                    {
+                        // Get calibration coefficients of linear regression fit
+                        string[] values = line.Split(',');
+                        coefficients[0] = float.Parse(values[0]);
+                        coefficients[1] = float.Parse(values[1]);
+                        coefficients[2] = float.Parse(values[2]);
+                        coefficients[3] = float.Parse(values[3]);
+                    }
+                }
+            }
+            else if (dynamicCalibrationDone)
+            {
+                calibrated = true;
+            }
+            else if (startOfProgram == true)
+            {
+                // if started without calibrating, use old calibration values
+                measureWithOldCalibrationValues = true;
+                StartCoroutine(ChangeApplicationButtonColor());
+            }
+            
+            else Debug.Log("Calibration did not work");
         }
-        else if (bodyPartToggle.isOn && startOfProgram == true)
-        {
-            // if started without calibrating, use old calibration values
-            measureWithOldCalibrationValues = true;
-            StartCoroutine(ChangeApplicationButtonColor());
-        }
-        else Debug.Log("Calibration did not work");
+        
 
     }
     void ButtonClick3()
@@ -97,16 +127,19 @@ public class RotateAroundLocalYAxis : MonoBehaviour
 
     IEnumerator CalibrateDynamic()
     {
-        List<double> linregMeas = new List<double>();
-        List<double> linregAngles = new List<double>();
-
-        startOfProgram = false;
-        measureWithOldCalibrationValues = false;
+        
         if (calibrated == false && bodyPartToggle.isOn && canWrite)
         {
+            List<double> linregMeas = new List<double>();
+            List<double> linregAngles = new List<double>();
+
+            startOfProgram = false;
+            measureWithOldCalibrationValues = false;
+
             float endTime = Time.time + calibrationTimeMove;
             float startTime = Time.time;
             // get impedance and angle measurements for calibration
+            StartCoroutine(ChangeDynamicButtonColorCalibrating());
             while (Time.time < endTime)
             {
                 //float sineWaveValue = (float)(Math.Sin((Time.time-startTime) * frequency - Math.PI / 2) * amplitude + offset);
@@ -172,7 +205,17 @@ public class RotateAroundLocalYAxis : MonoBehaviour
             Vector<double> Y = DenseVector.OfArray(y);
 
             //multiple regression
-            coefficients = MultipleRegression.NormalEquations(X, Y);
+
+            try
+            {
+                coefficients = MultipleRegression.NormalEquations(X, Y);
+            }
+            catch (Exception ex) 
+            { 
+                Debug.LogError(ex);
+                StartCoroutine(ChangeDynamicButtonColorError());
+            }
+          
 
 
             //Debugging, write coefficients and arrays into files to visualize relationship
@@ -198,10 +241,14 @@ public class RotateAroundLocalYAxis : MonoBehaviour
         calibrateButton3.GetComponent<Image>().color = Color.white; // Change the color back to white
 
     }
-
-    IEnumerator ChangeDynamicButtonColor()
+    IEnumerator ChangeDynamicButtonColorCalibrating()
     {
         calibrateButton3.GetComponent<Image>().color = Color.green;
+        yield return new WaitForSeconds(0.1f);
+    }
+    IEnumerator ChangeDynamicButtonColor()
+    {
+        //calibrateButton3.GetComponent<Image>().color = Color.green;
         yield return new WaitForSeconds(0.2f); // Wait for 0.1 second
         calibrateButton3.GetComponent<Image>().color = Color.white; // Change the color back to white
 
