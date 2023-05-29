@@ -25928,7 +25928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100126, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
       propertyPath: m_Layer
@@ -31935,6 +31935,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 1
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1691807805}
   bodyPartIndex: 1
   RotationDirectionX: 0
   RotationDirectionY: 1
@@ -35613,6 +35615,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 1
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1290733141}
   bodyPartIndex: 3
   RotationDirectionX: 0
   RotationDirectionY: 1
@@ -38435,6 +38439,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 0}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -42697,6 +42703,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 1
   canWrite: 1
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1818901080}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 1
@@ -46231,7 +46239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1153607226
 Transform:
   m_ObjectHideFlags: 0
@@ -53078,6 +53086,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1290733141}
   bodyPartIndex: 3
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -56577,6 +56587,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 0}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -57145,6 +57157,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1386401482}
   bodyPartIndex: 2
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -66901,6 +66915,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 0}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 1
@@ -71734,6 +71750,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1691807805}
   bodyPartIndex: 1
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -74817,6 +74835,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 1
   canWrite: 1
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1386401482}
   bodyPartIndex: 2
   RotationDirectionX: 0
   RotationDirectionY: 1
@@ -76689,6 +76709,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 1818901080}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -78332,6 +78354,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 0}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 0
@@ -88653,6 +88677,8 @@ MonoBehaviour:
   calibrationVisualizationToggle: 0
   canWrite: 0
   calibrated: 0
+  dynamicCalibrationDone: 0
+  otherBodyScript: {fileID: 0}
   bodyPartIndex: 0
   RotationDirectionX: 0
   RotationDirectionY: 0
